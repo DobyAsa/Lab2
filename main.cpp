@@ -1,6 +1,9 @@
 
 #include <iostream>
 #include "List.h"
+#include "List.cpp"
+#include "ListNode.h"
+#include "ListNode.cpp"
 
 void CharacterDivision(List<char> L);
 
@@ -9,6 +12,7 @@ int main() {
     List<char> L(input, 40);
     L.Show();
     CharacterDivision(L);
+
     return 0;
 }
 
@@ -16,9 +20,8 @@ int main() {
 void CharacterDivision(List<char> L) {
     List<char> L1, L2, L3;
     unsigned length = L.Length();
-    ListNode<char> *p = L.GetFirst();
     for (int i = 0; i < length; i++) {
-        char data = p->GetData();
+        char data = L.GetFirst()->GetData();
         if (data <= '9' && data >= '0') {
             L1.InsertAsFirst(data);
         } else if (data <= 'z' && data >= 'a') {
@@ -26,6 +29,7 @@ void CharacterDivision(List<char> L) {
         } else {
             L3.InsertAsFirst(data);
         }
+        L.Delete(0);
     }
     printf("L1:");
     L1.Show();

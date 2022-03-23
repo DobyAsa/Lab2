@@ -5,15 +5,16 @@
 #include <iostream>
 
 template<typename T>
-List<T>::List():tail(NULL, NULL), head(NULL, &tail), length(0) {}
+List<T>::List():tail(0, NULL), head(0, &tail), length(0) {}
 
 template<typename T>
-List<T>::List(T *Array, unsigned int size):tail(NULL, NULL), head(NULL, &tail), length(0) {
-    ListNode<T> *p = head;
+List<T>::List(T *Array, unsigned int size):tail(0, NULL), head(0, &tail), length(0) {
+    ListNode<T> *p = &head;
     for (int i = 0; i < size; i++) {
         p->SetNext(new ListNode<T>(Array[i], p->GetNext()));
         p = p->GetNext();
     }
+    length = size;
 }
 template<typename T>
 bool List<T>::InsertAsFirst(T ddata) {
@@ -27,7 +28,7 @@ bool List<T>::InsertAsLast(T ddata) {
 
 template<typename T>
 bool List<T>::Insert(T ddata, unsigned int index) {
-    if (index >= length) return false;
+    if (index > length) return false;
 
     ListNode<T> *p = &head;
     // 移动位置到要插入的地方
@@ -72,10 +73,10 @@ template<typename T>
 void List<T>::Show() {
     ListNode<T> *p = head.GetNext();
     for (int i = 0; i < length; i++) {
-        printf(" %d|", p->GetData());
+        std::cout<<p->GetData()<<"| ";
         p = p->GetNext();
     }
-    printf("\n");
+    printf("size: %d \n", length);
 }
 
 template<typename T>
@@ -104,13 +105,9 @@ ListNode<T> *List<T>::Find(T target) {
 }
 
 template<typename T>
-List<T>::~List<T>() {
-    ListNode<T> *p = head.GetNext();
-    ListNode<T> *q;
-    while (p != &tail) {
-        q = p;
-        p = p->GetNext();
-        delete (q);
+List<T>::~List() {
+    while(length){
+        Delete(0);
     }
 }
 
