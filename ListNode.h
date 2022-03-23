@@ -4,14 +4,22 @@
 
 #ifndef LAB2_LISTNODE_H
 #define LAB2_LISTNODE_H
-template <typename T>
+
+template<typename T>
 class ListNode {
 private:
     T data;
-    ListNode<T>* next;
+    ListNode<T> *next;
 public:
-    ListNode(T ddata, ListNode<T>* nnext);
-    T Get();
-    void Set(T ddata, ListNode<T>* node);
+    ListNode(T ddata, ListNode<T> *nnext);
+
+    T GetData();
+
+    void SetData(T ddata);
+
+    ListNode<T> *GetNext();
+
+    void SetNext(ListNode<T> *nnext);
 };
+
 #endif //LAB2_LISTNODE_H
