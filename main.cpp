@@ -7,9 +7,9 @@ void JosephusCircle(int n, int k, int m);
 
 int main() {
     char input[] = "na4xjac5GsGAsya613F8dA5Hs4uD55hfaD4bjhk1";
-    CharacterDivision(input, 40);
+//    CharacterDivision(input, 40);
 
-//    JosephusCircle(41, 1, 3);
+    JosephusCircle(41, 1, 3);
 
     return 0;
 }
@@ -40,7 +40,7 @@ void CharacterDivision(char* input, unsigned int size) {
     L2.Show();
     printf("L3: ");
     L3.Show();
-};
+}
 
 void JosephusCircle(int n, int k, int m){
     CircleList<int> L;
@@ -59,4 +59,4 @@ void JosephusCircle(int n, int k, int m){
         begin = begin->GetNext();
         L.DeleteNode(a);
     }
-};
+}
